@@ -20,10 +20,10 @@ O agente está em `AgentTaskManager/agent.py` e define:
 
 ## Como rodar o agente
 
-1. Navegue até a pasta do projeto:
+1. Navegue até a pasta do projeto após clonar ou descompactar o repositório:
 
 ```bash
-cd /home/lucasgabriel/Documents/Workspace/Agents-DIO/AgentTrelloDio
+cd <pasta-do-projeto>/AgentTrelloDio
 ```
 
 2. Crie e ative o ambiente virtual (se ainda não existir):
