@@ -26,41 +26,54 @@ O agente está em `AgentTaskManager/agent.py` e define:
 cd /home/lucasgabriel/Documents/Workspace/Agents-DIO/AgentTrelloDio
 ```
 
-2. Ative o ambiente virtual:
+2. Crie e ative o ambiente virtual (se ainda não existir):
 
 ```bash
+python3 -m venv .lab-dio
 source .lab-dio/bin/activate
 ```
 
-3. Instale as dependências (se ainda não estiverem instaladas):
+> O projeto já inclui `.gitignore` para ignorar `.env` e `.lab-dio/`, então você não precisa commitar esses arquivos.
+
+3. Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Configure as variáveis de ambiente no arquivo `.env` do projeto:
+4. Copie o exemplo de ambiente e configure as credenciais do Trello em `AgentTaskManager`:
+
+```bash
+cp AgentTaskManager/.env.example AgentTaskManager/.env
+```
+
+5. Abra `AgentTaskManager/.env` e preencha com seus valores:
 
 ```env
 TRELLO_API_KEY=seu_api_key
 TRELLO_API_SECRET=seu_api_secret
 TRELLO_TOKEN=seu_token
+GOOGLE_API_KEY=seu_google_api_key
+# Se você usar Vertex AI, use uma das opções abaixo em vez de GOOGLE_API_KEY:
+# GOOGLE_CLOUD_PROJECT=seu_projeto
+# GOOGLE_CLOUD_LOCATION=seu_regiao
 ```
 
-5. Execute o agente usando o comando apropriado para o `adk`, por exemplo:
+6. Execute o agente usando o comando `adk`:
 
 ```bash
-adk create agenttaskmanager
+adk web
 ```
 
 ou diretamente com o binário do venv:
 
 ```bash
-./.lab-dio/bin/adk create agenttaskmanager
+./.lab-dio/bin/adk web
 ```
 
-> Se você estiver usando outra pasta ou virtualenv, ajuste o caminho conforme necessário.
+> Se você usar outro ambiente virtual, ajuste os comandos `source` e `./.lab-dio/bin/adk` conforme necessário.
 
 ## Avisos
 
-- Garanta que o board Trello chamado `DIO` exista e possua listas como `A FAZER`, `EM ANDAMENTO` e `CONCLUIDO`.
+- Garanta que o board Trello chamado `DIO` exista ou mude o nome no código do agente e possua listas como `A FAZER`, `EM ANDAMENTO` e `CONCLUIDO` (ou mude de acordo com sua necessidade).
 - O campo `due` deve ser enviado em formato válido (por exemplo `YYYY-MM-DD` ou `YYYY-MM-DDTHH:MM:SS`).
